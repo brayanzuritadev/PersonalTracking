@@ -1,0 +1,7 @@
+C:\Users\Brayan\source\repos\DAL\bin\Debug\DAL.dll
+C:\Users\Brayan\source\repos\DAL\bin\Debug\DAL.pdb
+C:\Users\Brayan\source\repos\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\Brayan\source\repos\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Brayan\source\repos\DAL\obj\Debug\DAL.dll
+C:\Users\Brayan\source\repos\DAL\obj\Debug\DAL.pdb
+C:\Users\Brayan\source\repos\DAL\bin\Debug\DAL.dll.config
