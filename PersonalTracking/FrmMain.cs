@@ -67,5 +67,13 @@ namespace PersonalTracking
             frm.ShowDialog();
             this.Visible = true;
         }
+
+        private void btnSalary_Click(object sender, EventArgs e)
+        {
+            FrmSalaryList frm = new FrmSalaryList();
+            this.Hide();
+            frm.ShowDialog();
+            this.Visible=true;
+        }
     }
 }

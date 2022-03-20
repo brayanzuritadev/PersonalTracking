@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
-//using DAL.DTO;
+using DAL.DTO;
 using BLL;
 
 namespace PersonalTracking
@@ -24,16 +24,19 @@ namespace PersonalTracking
         {
             this.Close();
         }
-        /*SalaryDTO dto = new SalaryDTO();
-        private bool combofull;
+        
+       /* private bool combofull;
         public SalaryDetailDTO detail = new SalaryDetailDTO();
         public bool isUpdate = false;*/
-        
+
+        SalaryDTO dto = new SalaryDTO();
+        private bool combofull;
+
         private void FrmSalary_Load(object sender, EventArgs e)
         {
-           /* dto = SalaryBLL.GetAll();
-            if(!isUpdate)
-            {
+            dto=SalaryBLL.GetAll();
+            /*if(!isUpdate)
+            {*/
                 dataGridView1.DataSource = dto.Employees;
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[1].HeaderText = "User No";
@@ -62,12 +65,12 @@ namespace PersonalTracking
                 if (dto.Departments.Count > 0)
                     combofull = true;
 
-            }
+            
             cmbMonth.DataSource = dto.Months;
             cmbMonth.DisplayMember = "MonthName";
             cmbMonth.ValueMember = "ID";
             cmbMonth.SelectedIndex = -1;
-            if(isUpdate)
+            /*if(isUpdate)
             {
                 panel1.Hide();
                 txtName.Text = detail.Name;
@@ -79,19 +82,26 @@ namespace PersonalTracking
 
             */
         }
-        //SALARY salary = new SALARY();
-        int oldsalary = 0;
         
+        int oldsalary = 0;
+        SALARY salary = new SALARY();
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            
-           
+            txtUserNo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtSurname.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtSalary.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+            txtYear.Text = DateTime.Today.Year.ToString();
+            salary.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            salary.ID = 0;
+            oldsalary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
+
 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-          if (txtYear.Text.Trim() == "")
+            if (txtYear.Text.Trim() == "")
                 MessageBox.Show("year is empty");
             else if (txtSalary.Text.Trim() == "")
                 MessageBox.Show("Salary is empty");
@@ -99,17 +109,23 @@ namespace PersonalTracking
                 MessageBox.Show("Select a month");
             else
             {
+                SALARY salary = new SALARY();
+
                 bool control = false;
                 /*if (!isUpdate)
                 {
                     if (salary.EmployeeID == 0)
                         MessageBox.Show("please select an employee from table");
                     else
-                    {
+                    {*/
                         salary.Year = Convert.ToInt32(txtYear.Text);
                         salary.MonthID = Convert.ToInt32(cmbMonth.SelectedValue);
                         salary.Amount = Convert.ToInt32(txtSalary.Text);
-                        if (salary.Amount > oldsalary)
+                    SalaryBLL.AddSalary(salary);
+
+                MessageBox.Show("Salary was add");
+                cmbMonth.SelectedIndex = -1;
+                /*  if (salary.Amount > oldsalary)
                             control = true;
                         SalaryBLL.AddSalary(salary,control);
                         MessageBox.Show("Salary was added");
@@ -140,7 +156,7 @@ namespace PersonalTracking
                     }
 
                 }*/
-                
+
             }
 
 
@@ -148,7 +164,7 @@ namespace PersonalTracking
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*if (combofull)
+            if (combofull)
             {
                 cmbPosition.DataSource = dto.Positions.Where(x => x.DepartmentID ==
                 Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
@@ -156,7 +172,7 @@ namespace PersonalTracking
                 dataGridView1.DataSource = list.Where(x => x.DepartmentID ==
                   Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
             }
-            */
+            
         }
 
         private void cmbPosition_SelectedIndexChanged(object sender, EventArgs e)
