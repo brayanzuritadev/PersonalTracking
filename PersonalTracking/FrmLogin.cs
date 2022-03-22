@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using DAL.DAO;
+using DAL;
+using BLL;
 
 namespace PersonalTracking
 {
@@ -40,9 +42,31 @@ namespace PersonalTracking
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FrmMain frm = new FrmMain();
-            this.Hide();
-            frm.ShowDialog();
+            if (txtUserNo.Text.Trim()=="" || txtPassword.Text.Trim() == "")
+            {
+                MessageBox.Show("Please fill the UserNo and Password");
+
+            }
+            else
+            {
+                List<EMPLOYEE> Credencial = EmployeeBLL.GetCredencial(Convert.ToInt32(txtUserNo.Text.Trim()), txtPassword.Text.Trim());
+                if(Credencial.Count == 0)
+                {
+                    MessageBox.Show("Please review your information");
+                }
+                else
+                {
+                    EMPLOYEE employee = new EMPLOYEE(); 
+                    employee = Credencial.First();
+                    UserStatic.EmployeeID = employee.ID;
+                    UserStatic.UserNo = employee.UserNo;
+                    UserStatic.IsAdmin = employee.isAdmin;
+
+                    FrmMain frm = new FrmMain();
+                    this.Hide();
+                    frm.ShowDialog();
+                }
+            }
         }
     }
 }

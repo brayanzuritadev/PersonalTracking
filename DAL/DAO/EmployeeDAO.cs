@@ -4,11 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL;
 
 namespace DAL.DAO
 {
     public class EmployeeDAO : EmployeeContext
     {
+		public static List<EMPLOYEE> GetCredencial(int userNo, string password)
+        {
+            try
+            {
+				List<EMPLOYEE> credencial = db.EMPLOYEE.Where(x=>x.UserNo == userNo && x.Password==password).ToList();
+				return credencial;
+
+            }catch (Exception ex)
+            {
+				throw ex;
+            }
+        }
         public static void AddEmployee(EMPLOYEE employee)
         {
             try

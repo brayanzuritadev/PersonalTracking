@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using DAL.DTO;
+using DAL.DTO;
 using BLL;
 using DAL;
 
@@ -54,13 +54,13 @@ namespace PersonalTracking
             
 
         }
-        //SalaryDTO dto = new SalaryDTO();
+        SalaryDTO dto = new SalaryDTO();
         private bool combofull;
         void FillAllData()
         {
-            /*dto = SalaryBLL.GetAll();
-            if (!UserStatic.isAdmin)
-                dto.Salaries = dto.Salaries.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
+            dto = SalaryBLL.GetAll();
+            /*if (!UserStatic.isAdmin)
+                dto.Salaries = dto.Salaries.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();*/
             dataGridView1.DataSource = dto.Salaries;
             combofull = false;
             cmbDepartment.DataSource = dto.Departments;
@@ -77,12 +77,12 @@ namespace PersonalTracking
             cmbMonth.DisplayMember = "MonthName";
             cmbMonth.ValueMember = "ID";
             cmbMonth.SelectedIndex = -1;
-            cmbPosition.SelectedIndex = -1;*/
+            cmbPosition.SelectedIndex = -1;
         }
         //SalaryDetailDTO detail = new SalaryDetailDTO();
         private void FrmSalaryList_Load(object sender, EventArgs e)
         {
-           /* FillAllData();
+            FillAllData();
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].HeaderText = "User No";
             dataGridView1.Columns[2].HeaderText = "Name";
@@ -97,7 +97,7 @@ namespace PersonalTracking
             dataGridView1.Columns[10].Visible = false;
             dataGridView1.Columns[12].Visible = false;
             dataGridView1.Columns[13].Visible = false;
-            if(!UserStatic.isAdmin)
+            /*if(!UserStatic.isAdmin)
             {
                 btnUpdate.Hide();
                 btnDelete.Hide();
@@ -111,16 +111,16 @@ namespace PersonalTracking
 
         private void cmbDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* if (combofull)
+            if (combofull)
             {
                 cmbPosition.DataSource = dto.Positions.Where(x => x.DepartmentID ==
                 Convert.ToInt32(cmbDepartment.SelectedValue)).ToList();
-            }*/
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           /* List<SalaryDetailDTO> list = dto.Salaries;
+            List<SalaryDetailDTO> list = dto.Salaries;
             if (txtUserNo.Text.Trim() != "")
                 list = list.Where(x => x.UserNo == Convert.ToInt32(txtUserNo.Text)).ToList();
             if (txtName.Text.Trim() != "")
@@ -146,7 +146,7 @@ namespace PersonalTracking
 
                     list = list.Where(x => x.SalaryAmount == Convert.ToInt32(txtSalary.Text)).ToList();
             }
-            dataGridView1.DataSource = list;*/
+            dataGridView1.DataSource = list;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -156,7 +156,7 @@ namespace PersonalTracking
 
         private void CleanFilters()
         {
-           /* txtUserNo.Clear();
+            txtUserNo.Clear();
             txtName.Clear();
             txtSurname.Clear();
             combofull = false;
@@ -170,7 +170,7 @@ namespace PersonalTracking
             rbEqual.Checked = false;
             txtYear.Clear();
             txtSalary.Clear();
-            dataGridView1.DataSource = dto.Salaries;*/
+            dataGridView1.DataSource = dto.Salaries;
         }
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)

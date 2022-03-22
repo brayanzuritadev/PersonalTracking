@@ -19,7 +19,7 @@ namespace DAL.DTO
 
         //position and department
         public int DepartmentID { get; set; }
-        public int PsitionID { get; set; }
+        public int PositionID { get; set; }
         public string DepartmentName { get; set; }
         public string Position { get; set; }
 

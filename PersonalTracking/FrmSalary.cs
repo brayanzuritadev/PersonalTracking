@@ -93,7 +93,6 @@ namespace PersonalTracking
             txtSalary.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
             txtYear.Text = DateTime.Today.Year.ToString();
             salary.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            salary.ID = 0;
             oldsalary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
 
 

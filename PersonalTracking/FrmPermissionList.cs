@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using DAL.DTO;
+using DAL.DTO;
 using DAL;
 using BLL;
 
@@ -68,14 +68,14 @@ namespace PersonalTracking
 
 
         }
-        //PermissionDTO dto = new PermissionDTO();
+        PermissionDTO dto = new PermissionDTO();
         private bool combofull;
         void FillAllData()
         {
 
-           /* dto = PermissionBLL.GetAll();
-            if (!UserStatic.isAdmin)
-                dto.Permissions = dto.Permissions.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
+           dto = PermissionBLL.GetAllPermission();
+            //if (!UserStatic.isAdmin)
+                //dto.Permissions = dto.Permissions.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
             dataGridView1.DataSource = dto.Permissions;
             combofull = false;
             cmbDepartment.DataSource = dto.Departments;
@@ -91,11 +91,11 @@ namespace PersonalTracking
             cmbState.DisplayMember = "StateName";
             cmbState.ValueMember = "ID";
             cmbState.SelectedIndex = -1;
-           */
+           
         }
         private void FrmPermissionList_Load(object sender, EventArgs e)
         {
-           /* FillAllData();
+            FillAllData();
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].HeaderText = "User No";
             dataGridView1.Columns[2].HeaderText = "Name";
@@ -111,21 +111,21 @@ namespace PersonalTracking
             dataGridView1.Columns[11].HeaderText = "State";
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
-            if(!UserStatic.isAdmin)
-            {
+            /*if(!UserStatic.isAdmin)
+            {*/
 
                 pnlForAdmin.Visible = false;
                 btnApprove.Hide();
                 btnDisApproved.Hide();
                 btnDelete.Hide();
                 btnClose.Location = new Point(423, 18);
-            }
+           /* }
            */
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           /* List<PermissionDetailDTO> list = dto.Permissions;
+            List<PermissionDetailDTO> list = dto.Permissions;
             if (txtUserNo.Text.Trim() != "")
                 list = list.Where(x => x.UserNo == Convert.ToInt32(txtUserNo.Text)).ToList();
             if (txtName.Text.Trim() != "")
@@ -151,7 +151,7 @@ namespace PersonalTracking
 
 
             dataGridView1.DataSource = list;
-           */
+           
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace PersonalTracking
 
         private void CleanFilters()
         {
-           /* txtUserNo.Clear();
+            txtUserNo.Clear();
             txtName.Clear();
             txtSurname.Clear();
             combofull = false;
@@ -173,7 +173,7 @@ namespace PersonalTracking
             rbStartDate.Checked = false;
             cmbState.SelectedIndex = -1;
             txtDayAmount.Clear();
-            dataGridView1.DataSource = dto.Permissions;*/
+            dataGridView1.DataSource = dto.Permissions;
         }
         ///PermissionDetailDTO detail = new PermissionDetailDTO();
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)

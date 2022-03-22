@@ -38,6 +38,10 @@ namespace BLL
                 return true;
             }
         }
+        public static List<EMPLOYEE> GetCredencial(int userNo, string password)
+        {
+            return EmployeeDAO.GetCredencial(userNo, password);
+        }
     }
 
 }

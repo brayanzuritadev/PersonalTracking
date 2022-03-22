@@ -29,7 +29,7 @@ namespace PersonalTracking
         {
             //visible muestra nuevamente el frm visible
             FrmTaskList frm = new FrmTaskList();
-            frm.Hide();
+            this.Hide();
             frm.ShowDialog();
             this.Visible = true;
         }
@@ -47,7 +47,6 @@ namespace PersonalTracking
         private void btnDepartment_Click(object sender, EventArgs e)
         {
             frmDepartmentList frm = new frmDepartmentList();
-            frm.Hide();
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;
@@ -56,13 +55,19 @@ namespace PersonalTracking
 
         private void btnPermission_Click(object sender, EventArgs e)
         {
-            
+            FrmPermissionList frm = new FrmPermissionList();
+            //este esconde el formulario main
+            this.Hide();
+            //muestra el formulario PermissionList
+            frm.ShowDialog();
+
+            ///muestra nuevamente el formulario main
+            this.Visible=true;
         }
 
         private void btnPosition_Click(object sender, EventArgs e)
         {
             FrmPositionList frm = new FrmPositionList();
-            frm.Hide();
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;
