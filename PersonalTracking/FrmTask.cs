@@ -15,8 +15,10 @@ namespace PersonalTracking
 {
     public partial class FrmTask : Form
     {
+        public bool isUpdate = false;
         TaskDTO dto = new TaskDTO();
-        
+        //para actualizar el Task
+        public TaskDetailDTO toUpdate = new TaskDetailDTO();
         //creamos un nuevo objeto de tipo task para guardar una nueva tarea
         TASK task = new TASK();
 
@@ -30,11 +32,9 @@ namespace PersonalTracking
         {
             this.Close();
         }
-       /* 
-        private bool combofull = false;
-        public bool isUpdate = false;
-        public TaskDetailDTO detail = new TaskDetailDTO();*/
-
+       
+        
+        
         private void FrmTask_Load(object sender, EventArgs e)
         {
             label9.Visible = false;
@@ -73,19 +73,23 @@ namespace PersonalTracking
             cmbTaskState.ValueMember = "ID";
             cmbTaskState.SelectedValue = -1;
 
-            /*if(isUpdate)
+            if(isUpdate)
             {
                 label9.Visible = true;
                 cmbTaskState.Visible = true;
-                txtName.Text = detail.Name;
-                txtUserNo.Text = detail.UserNo.ToString();
-                txtSurname.Text = detail.Surname;
-                txtTitle.Text = detail.Title;
-                txtContent.Text = detail.Content;
-                
+                txtName.Text = toUpdate.Name;
+                txtUserNo.Text = toUpdate.UserNo.ToString();
+                txtSurname.Text = toUpdate.Surname;
+                txtTitle.Text = toUpdate.Title;
+                txtContent.Text = toUpdate.Content;
+
+                cmbTaskState.DataSource = dto.TaskStates;
+                cmbTaskState.DisplayMember = "StateName";
+                cmbTaskState.ValueMember = "ID";
+                cmbTaskState.SelectedValue = toUpdate.TaskStateID;
 
 
-            }*/
+            }
 
         }
 
@@ -121,7 +125,6 @@ namespace PersonalTracking
                   Convert.ToInt32(cmbPosition.SelectedValue)).ToList();
             }
         }
-        //TASK task = new TASK();
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (task.EmployeeID == 0)
@@ -132,7 +135,7 @@ namespace PersonalTracking
                 MessageBox.Show("Content is empty");
             else
             {
-              /*  if(!isUpdate)*/
+                if (!isUpdate)
                 {
                     task.TaskTitle = txtTitle.Text;
                     task.TaskContent = txtContent.Text;
@@ -144,17 +147,17 @@ namespace PersonalTracking
                     txtContent.Clear();
                     task = new TASK();
                 }
-                /*else if(isUpdate)
+                else if (isUpdate)
                 {
                     DialogResult result = MessageBox.Show("Are you sure?", "Warning!!", MessageBoxButtons.YesNo);
-                    if(result==DialogResult.Yes)
+                    if (result == DialogResult.Yes)
                     {
                         TASK update = new TASK();
-                        update.ID = detail.TaskID;
-                        if (Convert.ToInt32(txtUserNo.Text) != detail.UserNo)
+                        update.ID = toUpdate.TaskID;
+                        if (Convert.ToInt32(txtUserNo.Text) != toUpdate.UserNo)
                             update.EmployeeID = task.EmployeeID;
                         else
-                            update.EmployeeID = detail.EmployeeID;
+                            update.EmployeeID = toUpdate.EmployeeID;
                         update.TaskTitle = txtTitle.Text;
                         update.TaskContent = txtContent.Text;
                         update.TaskState = Convert.ToInt32(cmbTaskState.SelectedValue);
@@ -165,14 +168,14 @@ namespace PersonalTracking
 
 
 
-                    }*/
+                    }
                 }
-               
 
 
 
-            
 
+
+            }
         }
     }
 }

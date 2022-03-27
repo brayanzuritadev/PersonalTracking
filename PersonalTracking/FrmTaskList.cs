@@ -15,6 +15,7 @@ namespace PersonalTracking
 {
     public partial class FrmTaskList : Form
     {
+        TaskDetailDTO toUpdate = new TaskDetailDTO();
         TaskDTO dto = new TaskDTO();
         public FrmTaskList()
         {
@@ -53,7 +54,7 @@ namespace PersonalTracking
             cmbTaskState.ValueMember = "ID";
             cmbTaskState.SelectedIndex = -1;
         }
-       // TaskDetailDTO detail = new TaskDetailDTO();
+       
         private void FrmTaskList_Load(object sender, EventArgs e)
         {
             FillAllData();
@@ -99,19 +100,19 @@ namespace PersonalTracking
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            /*if (detail.TaskID == 0)
+            if (toUpdate.TaskID == 0)
                 MessageBox.Show("Please select a task on table");
             else
             {
                 FrmTask frm = new FrmTask();
                 frm.isUpdate = true;
-                frm.detail = detail;
+                frm.toUpdate = toUpdate;
                 this.Hide();
                 frm.ShowDialog();
                 this.Visible = true;
                 FillAllData();
                 CleanFilters();
-            }*/
+            }
            
         }
 
@@ -169,7 +170,17 @@ namespace PersonalTracking
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            
+            toUpdate.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            toUpdate.Surname = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            toUpdate.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+            toUpdate.Title = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            toUpdate.Content = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
+            toUpdate.TaskStateID= Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[14].Value.ToString());
+            toUpdate.TaskID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
+            toUpdate.EmployeeID =Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
+            toUpdate.TaskStartDate = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
+            toUpdate.TaskDeliveryDate = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[5].Value);
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

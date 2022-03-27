@@ -111,16 +111,16 @@ namespace PersonalTracking
             dataGridView1.Columns[11].HeaderText = "State";
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
-            /*if(!UserStatic.isAdmin)
-            {*/
+            if(!UserStatic.IsAdmin)
+            {
 
                 pnlForAdmin.Visible = false;
                 btnApprove.Hide();
                 btnDisApproved.Hide();
                 btnDelete.Hide();
                 btnClose.Location = new Point(423, 18);
-           /* }
-           */
+            }
+           
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -190,18 +190,18 @@ namespace PersonalTracking
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-           /* PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Approved);
+           PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Approved);
             MessageBox.Show("Approved");
             FillAllData();
-            CleanFilters();*/
+            CleanFilters();
         }
 
         private void btnDisApproved_Click(object sender, EventArgs e)
         {
-           /* PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Disapproved);
+            PermissionBLL.UpdatePermission(detail.PermissionID, PermissionStates.Disapproved);
             MessageBox.Show("Disapproved");
             FillAllData();
-            CleanFilters();*/
+            CleanFilters();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

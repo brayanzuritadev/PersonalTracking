@@ -93,5 +93,18 @@ namespace DAL.DAO
                 throw ex;
             }
         }
+
+        public static void UpdatePermission(int permissionID,int approved)
+        {
+            try
+            {
+                PERMISSION pr = db.PERMISSION.First(x => x.ID == permissionID);
+                pr.PermissionState = approved;
+                db.SubmitChanges();
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

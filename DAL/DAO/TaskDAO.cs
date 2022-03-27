@@ -9,6 +9,21 @@ namespace DAL.DAO
 {
     public class TaskDAO : EmployeeContext
     {
+        public static void UpdateTask(TASK updateTask)
+        {
+            try
+            {
+                TASK task = db.TASK.First(x => x.ID == updateTask.ID);
+                task.TaskTitle = updateTask.TaskTitle;
+                task.TaskContent = updateTask.TaskContent;
+                task.TaskState = updateTask.TaskState;
+                task.EmployeeID = updateTask.EmployeeID;
+                db.SubmitChanges();
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static List<TASKSTATE> GetTaskState()
         {
             return db.TASKSTATE.ToList();
