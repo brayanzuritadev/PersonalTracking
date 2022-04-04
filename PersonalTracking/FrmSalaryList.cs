@@ -15,6 +15,7 @@ namespace PersonalTracking
 {
     public partial class FrmSalaryList : Form
     {
+        SalaryDetailDTO toUpdate = new SalaryDetailDTO();
         public FrmSalaryList()
         {
             InitializeComponent();
@@ -37,20 +38,20 @@ namespace PersonalTracking
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-           /* if (detail.SalaryID == 0)
+            if (toUpdate.SalaryID == 0)
                 MessageBox.Show("Please select a salary from table");
             else
             {
                 FrmSalary frm = new FrmSalary();
                 frm.isUpdate = true;
-                frm.detail = detail;
+                frm.toUpdate = toUpdate;
                 this.Hide();
                 frm.ShowDialog();
                 this.Visible = true;
                 FillAllData();
                 CleanFilters();
 
-            }*/
+            }
             
 
         }
@@ -59,8 +60,8 @@ namespace PersonalTracking
         void FillAllData()
         {
             dto = SalaryBLL.GetAll();
-            /*if (!UserStatic.isAdmin)
-                dto.Salaries = dto.Salaries.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();*/
+            if (!UserStatic.IsAdmin)
+                dto.Salaries = dto.Salaries.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
             dataGridView1.DataSource = dto.Salaries;
             combofull = false;
             cmbDepartment.DataSource = dto.Departments;
@@ -79,7 +80,7 @@ namespace PersonalTracking
             cmbMonth.SelectedIndex = -1;
             cmbPosition.SelectedIndex = -1;
         }
-        //SalaryDetailDTO detail = new SalaryDetailDTO();
+        
         private void FrmSalaryList_Load(object sender, EventArgs e)
         {
             FillAllData();
@@ -97,14 +98,14 @@ namespace PersonalTracking
             dataGridView1.Columns[10].Visible = false;
             dataGridView1.Columns[12].Visible = false;
             dataGridView1.Columns[13].Visible = false;
-            /*if(!UserStatic.isAdmin)
+            if(!UserStatic.IsAdmin)
             {
                 btnUpdate.Hide();
                 btnDelete.Hide();
                 btnNew.Location = new Point(212, 20);
                 btnClose.Location = new Point(350, 20);
                 pnlForAdmin.Hide();
-            }*/
+            }
 
 
         }
@@ -175,15 +176,15 @@ namespace PersonalTracking
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-           /* detail.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            detail.Surname = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            detail.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-            detail.SalaryID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[12].Value);
-            detail.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            detail.SalaryYear = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
-            detail.MonthID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[10].Value);
-            detail.SalaryAmount = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
-            detail.oldSalary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);*/
+            toUpdate.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            toUpdate.Surname = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            toUpdate.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+            toUpdate.SalaryID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
+            toUpdate.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            toUpdate.SalaryYear = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
+            toUpdate.MonthID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[10].Value);
+            toUpdate.SalaryAmount = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
+            toUpdate.oldSalary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

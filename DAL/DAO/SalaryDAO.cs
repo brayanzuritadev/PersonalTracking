@@ -9,6 +9,20 @@ namespace DAL.DAO
 {
     public class SalaryDAO:EmployeeContext
     {
+        public static void UpdateSalary(SALARY salary)
+        {
+            try
+            {
+                SALARY sl = db.SALARY.First(x=>x.ID==salary.ID);
+                sl.Amount = salary.Amount;
+                sl.Year = salary.Year;
+                sl.MonthID = salary.MonthID;
+                db.SubmitChanges();
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static List<MONTHS> GetMonths()
         {
             return db.MONTHS.ToList();

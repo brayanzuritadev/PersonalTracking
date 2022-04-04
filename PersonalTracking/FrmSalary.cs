@@ -15,6 +15,8 @@ namespace PersonalTracking
 {
     public partial class FrmSalary : Form
     {
+        public SalaryDetailDTO toUpdate = new SalaryDetailDTO();
+        public bool isUpdate=false;
         public FrmSalary()
         {
             InitializeComponent();
@@ -25,9 +27,6 @@ namespace PersonalTracking
             this.Close();
         }
         
-       /* private bool combofull;
-        public SalaryDetailDTO detail = new SalaryDetailDTO();
-        public bool isUpdate = false;*/
 
         SalaryDTO dto = new SalaryDTO();
         private bool combofull;
@@ -35,8 +34,8 @@ namespace PersonalTracking
         private void FrmSalary_Load(object sender, EventArgs e)
         {
             dto=SalaryBLL.GetAll();
-            /*if(!isUpdate)
-            {*/
+            if (!isUpdate)
+            {
                 dataGridView1.DataSource = dto.Employees;
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[1].HeaderText = "User No";
@@ -65,22 +64,21 @@ namespace PersonalTracking
                 if (dto.Departments.Count > 0)
                     combofull = true;
 
-            
+            }
             cmbMonth.DataSource = dto.Months;
             cmbMonth.DisplayMember = "MonthName";
             cmbMonth.ValueMember = "ID";
             cmbMonth.SelectedIndex = -1;
-            /*if(isUpdate)
+            if(isUpdate)
             {
                 panel1.Hide();
-                txtName.Text = detail.Name;
-                txtSalary.Text = detail.SalaryAmount.ToString();
-                txtSurname.Text = detail.Surname;
-                txtYear.Text = detail.SalaryYear.ToString();
-                cmbMonth.SelectedValue = detail.MonthID;
+                txtName.Text = toUpdate.Name;
+                txtSalary.Text = toUpdate.SalaryAmount.ToString();
+                txtSurname.Text = toUpdate.Surname;
+                txtYear.Text = toUpdate.SalaryYear.ToString();
+                cmbMonth.SelectedValue = toUpdate.MonthID;
             }
 
-            */
         }
         
         int oldsalary = 0;
@@ -108,30 +106,26 @@ namespace PersonalTracking
                 MessageBox.Show("Select a month");
             else
             {
-                SALARY salary = new SALARY();
 
                 bool control = false;
-                /*if (!isUpdate)
+                if (!isUpdate)
                 {
                     if (salary.EmployeeID == 0)
                         MessageBox.Show("please select an employee from table");
                     else
-                    {*/
+                    {
                         salary.Year = Convert.ToInt32(txtYear.Text);
                         salary.MonthID = Convert.ToInt32(cmbMonth.SelectedValue);
                         salary.Amount = Convert.ToInt32(txtSalary.Text);
-                    SalaryBLL.AddSalary(salary);
-
-                MessageBox.Show("Salary was add");
-                cmbMonth.SelectedIndex = -1;
-                /*  if (salary.Amount > oldsalary)
+                        if (salary.Amount>oldsalary) {
                             control = true;
-                        SalaryBLL.AddSalary(salary,control);
-                        MessageBox.Show("Salary was added");
-                        cmbMonth.SelectedIndex = -1;
-                        salary = new SALARY();
-                    }
+                            SalaryBLL.AddSalary(salary, control);
 
+                            MessageBox.Show("Salary was add");
+                            cmbMonth.SelectedIndex = -1;
+                            salary = new SALARY();
+                        }
+                    }
                 }
                 else
                 {
@@ -139,13 +133,13 @@ namespace PersonalTracking
                     if(DialogResult.Yes==result)
                     {
                         SALARY salary = new SALARY();
-                        salary.ID = detail.SalaryID;
-                        salary.EmployeeID = detail.EmployeeID;
+                        salary.ID = toUpdate.SalaryID;
+                        salary.EmployeeID = toUpdate.EmployeeID;
                         salary.Year = Convert.ToInt32(txtYear.Text);
                         salary.MonthID = Convert.ToInt32(cmbMonth.SelectedValue);
                         salary.Amount = Convert.ToInt32(txtSalary.Text);
                         
-                        if (salary.Amount > detail.oldSalary)
+                        if (salary.Amount > toUpdate.oldSalary)
                             control = true;
                         SalaryBLL.UpdateSalary(salary, control);
                         MessageBox.Show("Salary was Uptaded");
@@ -154,7 +148,7 @@ namespace PersonalTracking
 
                     }
 
-                }*/
+                }
 
             }
 

@@ -10,6 +10,18 @@ namespace DAL.DAO
 {
     public class EmployeeDAO : EmployeeContext
     {
+		public static void UpdateEmployee(int employeeID, int amount)
+        {
+            try
+            {
+				EMPLOYEE employee = db.EMPLOYEE.First(x => x.ID == employeeID);
+				employee.Salary = amount;
+				db.SubmitChanges();
+            }catch(Exception ex)
+            {
+				throw ex;
+            }
+        }
 		public static List<EMPLOYEE> GetCredencial(int userNo, string password)
         {
             try
