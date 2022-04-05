@@ -14,6 +14,8 @@ namespace PersonalTracking
 {
     public partial class frmDepartmentList : Form
     {
+        DEPARTMENT toUpdate = new DEPARTMENT();
+        bool isUpdate = false;
         public frmDepartmentList()
         {
             InitializeComponent();
@@ -54,6 +56,31 @@ namespace PersonalTracking
             dataGridView1.DataSource = list;
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].HeaderText = "Department Name";
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (toUpdate.ID==0)
+            {
+                MessageBox.Show("Plese choose an department");
+            }
+            else
+            {
+                FrmDepartment frm = new FrmDepartment();
+                frm.toUpdate = toUpdate;
+                frm.isUpdate = true;
+                this.Hide();
+                frm.ShowDialog();
+                this.Visible=true;
+                list = DepartmentBLL.GetDepartment();
+                dataGridView1.DataSource=list;
+            }
+        }
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            toUpdate.ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            toUpdate.DepartmentName = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
     }
 }
