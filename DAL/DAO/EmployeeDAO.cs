@@ -10,6 +10,30 @@ namespace DAL.DAO
 {
     public class EmployeeDAO : EmployeeContext
     {
+		//actualizamos el empleado
+		public static void UpdateEmployee(EMPLOYEE employee)
+        {
+            try
+            {
+				EMPLOYEE emp = db.EMPLOYEE.First(x=>x.ID == employee.ID);
+				emp.Adress = employee.Adress;
+				emp.Name = employee.Name;
+				emp.Salary = employee.Salary;
+				emp.Password = employee.Password;
+				emp.UserNo = employee.UserNo;
+				emp.BirthDay = employee.BirthDay;
+				emp.ImagePath = employee.ImagePath;
+				emp.DepartmentID = employee.DepartmentID;
+				emp.isAdmin = employee.isAdmin;
+				emp.PositionID = employee.PositionID;
+				emp.Surname = employee.Surname;
+				db.SubmitChanges();
+            }catch(Exception ex)
+            {
+				throw ex;
+            }
+        }
+
 		public static void UpdateEmployee(int employeeID, int amount)
         {
             try

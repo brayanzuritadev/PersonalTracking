@@ -11,6 +11,12 @@ namespace BLL
 {
     public class EmployeeBLL
     {
+        //este metodo actualiza al empleado
+        public static void UpdateEmployee(EMPLOYEE employee)
+        {
+            EmployeeDAO.UpdateEmployee(employee);
+        }
+
         //este metodo retorna un de tipo EmployeeDTO
         public static EmployeeDTO GetAll()
         {

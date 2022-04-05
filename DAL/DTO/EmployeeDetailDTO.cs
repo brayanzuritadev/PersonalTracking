@@ -21,6 +21,6 @@ namespace DAL.DTO
         public string ImagePath { get; set; }
         public string Adress { get; set; }
         public DateTime BhirtDay { get; set; }
-        public string Password { get; internal set; }
+        public string Password { get; set; }
     }
 }

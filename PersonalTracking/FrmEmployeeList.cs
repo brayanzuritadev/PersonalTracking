@@ -17,6 +17,11 @@ namespace PersonalTracking
     {
 
         EmployeeDTO dto = new EmployeeDTO();
+
+        //para actualizar un empleado
+        EmployeeDetailDTO toUpdate = new EmployeeDetailDTO();
+        public bool isUpdate = false;
+
         List<EmployeeDetailDTO> list;
         
         public FrmEmployeeList()
@@ -99,10 +104,20 @@ namespace PersonalTracking
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmEmployee frm = new FrmEmployee();
-            frm.Hide();
-            frm.ShowDialog();
-            this.Visible = true;
+            if (toUpdate.EmployeeID==0) {
+                MessageBox.Show("Please choose an employee");
+            }
+            else
+            {
+                FrmEmployee frm = new FrmEmployee();
+                frm.isUpdate = true;
+                frm.toUpdate = toUpdate;
+                this.Hide();
+                frm.ShowDialog();
+                this.Visible = true;
+                FillAllData();
+                CleanFilters();
+            }
         }
 
         private void cbDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,6 +181,22 @@ namespace PersonalTracking
             cbPosition.SelectedIndex = -1;
             combofull = true;
             dataGridView1.DataSource = dto.Employees;
+        }
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            toUpdate.EmployeeID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            toUpdate.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            toUpdate.Password = dataGridView1.Rows[e.RowIndex].Cells[13].Value.ToString();
+            toUpdate.isAdmin = Convert.ToBoolean(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
+            toUpdate.Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            toUpdate.Surname = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            toUpdate.ImagePath = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+            toUpdate.DepartmentID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString());
+            toUpdate.PositionID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString());
+            toUpdate.BhirtDay = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString());
+            toUpdate.Adress = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
+            toUpdate.Salary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
         }
     }
 }
