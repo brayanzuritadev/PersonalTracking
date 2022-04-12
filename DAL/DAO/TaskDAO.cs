@@ -9,6 +9,19 @@ namespace DAL.DAO
 {
     public class TaskDAO : EmployeeContext
     {
+        //eliminar task
+        public static void DeleteTask(int taskID){
+            try
+            {
+                TASK task = db.TASK.First(x => x.ID == taskID);
+                db.TASK.DeleteOnSubmit(task);
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static void UpdateTask(TASK updateTask)
         {
             try

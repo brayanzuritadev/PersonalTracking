@@ -11,6 +11,10 @@ namespace BLL
 {
     public class PermissionBLL
     {
+        public static void DeletePermission(int id)
+        {
+            PermissionDAO.DeletePermission(id);
+        }
         public static void AddPermission(PERMISSION permission)
         {
             PermissionDAO.AddPermission(permission);

@@ -48,6 +48,11 @@ namespace BLL
         {
             return EmployeeDAO.GetCredencial(userNo, password);
         }
+
+        public static void DeleteEmployee(int employeeID)
+        {
+            EmployeeDAO.DeleteEmployee(employeeID);
+        }
     }
 
 }

@@ -188,11 +188,11 @@ namespace PersonalTracking
             DialogResult result = MessageBox.Show("Are you sure to delete this task", "Warning", MessageBoxButtons.YesNo);
             if(result==DialogResult.Yes)
             {
-               /* TaskBLL.DeleteTask(detail.TaskID);
+                TaskBLL.DeleteTask(toUpdate.TaskID);
                 MessageBox.Show("Task was Deleted");
                 FillAllData();
                 CleanFilters();
-               */
+               
             }
         }
 

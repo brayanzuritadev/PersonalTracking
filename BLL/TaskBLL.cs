@@ -11,6 +11,11 @@ namespace BLL
 {
     public class TaskBLL
     {
+        //eliminar task
+        public static void DeleteTask(int taskID)
+        {
+            TaskDAO.DeleteTask(taskID);
+        }
         //esto devuelve un objeto de tipo TaskDTO
         public static TaskDTO GetAll()
         {

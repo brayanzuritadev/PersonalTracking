@@ -198,5 +198,18 @@ namespace PersonalTracking
             toUpdate.Adress = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
             toUpdate.Salary = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure to delete this Employee","Warning",MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                EmployeeBLL.DeleteEmployee(toUpdate.EmployeeID);
+                MessageBox.Show("The Employee was deleted");
+                FillAllData();
+                CleanFilters();
+
+            }
+        }
     }
 }

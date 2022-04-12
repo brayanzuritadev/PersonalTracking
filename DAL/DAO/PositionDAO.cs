@@ -9,6 +9,32 @@ namespace DAL.DAO
 {
     public class PositionDAO : EmployeeContext
     {
+        //delete position
+        public static void DeletePosition(int ID)
+        {
+            try
+            {
+                POSITION p = db.POSITION.First(x => x.ID == ID);
+                db.POSITION.DeleteOnSubmit(p);
+                db.SubmitChanges();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void UpdatePosition(POSITION position)
+        {
+            try
+            {
+                POSITION p = db.POSITION.First(x=> x.ID == position.ID);
+                p.PositionName = position.PositionName;
+                p.DepartmentID = position.DepartmentID;
+                db.SubmitChanges();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static void AddPosition(POSITION position)
         {
             try

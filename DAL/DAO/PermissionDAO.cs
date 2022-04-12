@@ -9,6 +9,18 @@ namespace DAL.DAO
 {
     public class PermissionDAO:EmployeeContext
     {
+        public static void DeletePermission(int id)
+        {
+            try
+            {
+                PERMISSION pr = db.PERMISSION.First(x => x.ID == id);
+                db.PERMISSION.DeleteOnSubmit(pr);
+                db.SubmitChanges();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static void AddPermission(PERMISSION permission)
         {
             try

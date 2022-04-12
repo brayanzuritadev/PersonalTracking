@@ -206,21 +206,21 @@ namespace PersonalTracking
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            /*DialogResult result = MessageBox.Show("Are you sure to delete this permission", "Warning", MessageBoxButtons.YesNo);
-            if(result==DialogResult.Yes)
+            DialogResult result = MessageBox.Show("Are you sure to delete this permission", "Warning", MessageBoxButtons.YesNo);
+            if (result==DialogResult.Yes && detail.PermissionID!=0)
             {
                 if (detail.State == PermissionStates.Approved || detail.State == PermissionStates.Disapproved)
+                {
                     MessageBox.Show("You cannot delete approved or disapproved permissions");
+                }
                 else
                 {
                     PermissionBLL.DeletePermission(detail.PermissionID);
                     MessageBox.Show("Permission was deleted");
                     FillAllData();
                     CleanFilters();
-
                 }
-
-            }*/
+            }
         }
 
         private void txtExcel_Click(object sender, EventArgs e)

@@ -189,15 +189,15 @@ namespace PersonalTracking
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            /*DialogResult result = MessageBox.Show("Are you sure to delete this Salary", "Warning", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Are you sure to delete this Salary", "Warning", MessageBoxButtons.YesNo);
             if(result==DialogResult.Yes)
             {
-                SalaryBLL.DeleteSalary(detail.SalaryID);
+                SalaryBLL.DeleteSalary(toUpdate.SalaryID);
                 MessageBox.Show("Salary was Deleted");
                 FillAllData();
                 CleanFilters();
 
-            }*/
+            }
         }
 
         private void txtExcel_Click(object sender, EventArgs e)

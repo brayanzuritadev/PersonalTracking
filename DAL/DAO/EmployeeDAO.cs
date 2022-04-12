@@ -11,6 +11,16 @@ namespace DAL.DAO
     public class EmployeeDAO : EmployeeContext
     {
 		//actualizamos el empleado
+		public static void UpdateEmployee(POSITION position)
+        {
+			List<EMPLOYEE> list = db.EMPLOYEE.Where(x => x.PositionID==position.ID).ToList();
+			foreach(var item in list)
+            {
+				item.DepartmentID = position.DepartmentID;
+            }
+			db.SubmitChanges();
+        }
+
 		public static void UpdateEmployee(EMPLOYEE employee)
         {
             try
@@ -46,7 +56,21 @@ namespace DAL.DAO
 				throw ex;
             }
         }
-		public static List<EMPLOYEE> GetCredencial(int userNo, string password)
+
+        public static void DeleteEmployee(int employeeID)
+        {
+            try
+            {
+				EMPLOYEE employee = db.EMPLOYEE.First(x => x.ID == employeeID);
+				db.EMPLOYEE.DeleteOnSubmit(employee);
+				db.SubmitChanges();
+            }catch(Exception ex)
+            {
+				throw ex;
+            }
+        }
+
+        public static List<EMPLOYEE> GetCredencial(int userNo, string password)
         {
             try
             {

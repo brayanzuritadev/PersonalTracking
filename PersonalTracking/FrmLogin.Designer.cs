@@ -111,7 +111,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
