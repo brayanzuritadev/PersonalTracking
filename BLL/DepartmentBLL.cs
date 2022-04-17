@@ -10,6 +10,12 @@ namespace BLL
 {
     public class DepartmentBLL
     {
+        //Delete a department
+
+        public static void DeleteDepartment(int id)
+        {
+            DepartmentDAO.DeleteDepartment(id);
+        }
         public static void AddDepartment(DEPARTMENT department)
         {
             DepartmentDAO.AddDepartment(department);
