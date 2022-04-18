@@ -49,8 +49,8 @@ namespace PersonalTracking
         {
             if (detail.PermissionID == 0)
                 MessageBox.Show("please select a permission from table");
-            //else if (detail.State == PermissionStates.Approved || detail.State == PermissionStates.Disapproved)
-                //MessageBox.Show("You can not update any approved or diapproved permission");
+            else if (detail.State == PermissionStates.Approved || detail.State == PermissionStates.Disapproved)
+                MessageBox.Show("You can not update any approved or diapproved permission");
             else
             {
 
@@ -74,8 +74,8 @@ namespace PersonalTracking
         {
 
            dto = PermissionBLL.GetAllPermission();
-            //if (!UserStatic.isAdmin)
-                //dto.Permissions = dto.Permissions.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
+            if (!UserStatic.IsAdmin)
+                dto.Permissions = dto.Permissions.Where(x => x.EmployeeID == UserStatic.EmployeeID).ToList();
             dataGridView1.DataSource = dto.Permissions;
             combofull = false;
             cmbDepartment.DataSource = dto.Departments;
@@ -113,7 +113,6 @@ namespace PersonalTracking
             dataGridView1.Columns[14].Visible = false;
             if(!UserStatic.IsAdmin)
             {
-
                 pnlForAdmin.Visible = false;
                 btnApprove.Hide();
                 btnDisApproved.Hide();
