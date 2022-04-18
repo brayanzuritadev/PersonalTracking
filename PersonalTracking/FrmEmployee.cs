@@ -113,7 +113,14 @@ namespace PersonalTracking
                 cbDepartment.SelectedValue = toUpdate.DepartmentID;
                 cbPosition.SelectedValue = toUpdate.PositionID;
                 dateTimePicker1.Value = Convert.ToDateTime(toUpdate.BhirtDay);
-
+                if (!UserStatic.IsAdmin)
+                {
+                    chbIsAdmin.Enabled = false;
+                    txtUserNo.Enabled  = false;
+                    txtSalary.Enabled = false;
+                    cbDepartment.Enabled = false;
+                    cbPosition.Enabled = false;
+                }
             }
             
         }
