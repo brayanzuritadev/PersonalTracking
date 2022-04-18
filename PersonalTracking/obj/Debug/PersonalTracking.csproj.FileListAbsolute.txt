@@ -58,3 +58,4 @@ C:\Users\Brayan\source\repos\PersonalTracking\PersonalTracking\obj\Debug\Persona
 C:\Users\Brayan\source\repos\PersonalTracking\PersonalTracking\obj\Debug\PersonalTracking.csproj.CopyComplete
 C:\Users\Brayan\source\repos\PersonalTracking\PersonalTracking\obj\Debug\PersonalTracking.exe
 C:\Users\Brayan\source\repos\PersonalTracking\PersonalTracking\obj\Debug\PersonalTracking.pdb
+C:\Users\Brayan\source\repos\PersonalTracking\PersonalTracking\obj\Debug\PersonalTracking.csproj.ResolveComReference.cache
